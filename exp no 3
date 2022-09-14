@@ -1,0 +1,153 @@
+create database dept;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> use dept;
+Database changed
+mysql> create table dept(
+    -> deptno int,
+    -> deptname varchar(10),
+    -> deptloc varchar(10));
+Query OK, 0 rows affected (0.55 sec)
+
+mysql> insert into dept
+    -> values(10,'sushma','asp');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from dept;
++--------+----------+---------+
+| deptno | deptname | deptloc |
++--------+----------+---------+
+|     10 | sushma   | asp     |
++--------+----------+---------+
+1 row in set (0.00 sec)
+
+mysql> create database emp;
+ERROR 1007 (HY000): Can't create database 'emp'; database exists
+mysql> drop database emp;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create database emp;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> use emp;
+Database changed
+mysql> create table emp(
+    -> empno int,
+    -> ename varchar(10),
+    -> job varchar910),
+    -> deptno int,
+    -> sal int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar910),
+deptno int,
+sal int)' at line 4
+mysql> create table emp(
+    -> empno int,
+    -> ename varchar(10),
+    -> job varchar(10),
+    -> deptno int,
+    -> sal int);
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> insert into emp
+    -> values(1,'swathi','asp',29,15000),(2,'jyothi','teacher',30,2000),(3,'sushma','lecturer',31,3000),(4,'madhuri','doctor',32,4000);
+Query OK, 4 rows affected (0.11 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++-------+---------+----------+--------+-------+
+| empno | ename   | job      | deptno | sal   |
++-------+---------+----------+--------+-------+
+|     1 | swathi  | asp      |     29 | 15000 |
+|     2 | jyothi  | teacher  |     30 |  2000 |
+|     3 | sushma  | lecturer |     31 |  3000 |
+|     4 | madhuri | doctor   |     32 |  4000 |
++-------+---------+----------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update emp
+    -> set sal=16000
+    -> where job='asp';
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from emp;
++-------+---------+----------+--------+-------+
+| empno | ename   | job      | deptno | sal   |
++-------+---------+----------+--------+-------+
+|     1 | swathi  | asp      |     29 | 16000 |
+|     2 | jyothi  | teacher  |     30 |  2000 |
+|     3 | sushma  | lecturer |     31 |  3000 |
+|     4 | madhuri | doctor   |     32 |  4000 |
++-------+---------+----------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select empno,ename,job,deptno,sal
+    -> from emp;
++-------+---------+----------+--------+-------+
+| empno | ename   | job      | deptno | sal   |
++-------+---------+----------+--------+-------+
+|     1 | swathi  | asp      |     29 | 16000 |
+|     2 | jyothi  | teacher  |     30 |  2000 |
+|     3 | sushma  | lecturer |     31 |  3000 |
+|     4 | madhuri | doctor   |     32 |  4000 |
++-------+---------+----------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp
+    -> where sal=3000;
++-------+--------+----------+--------+------+
+| empno | ename  | job      | deptno | sal  |
++-------+--------+----------+--------+------+
+|     3 | sushma | lecturer |     31 | 3000 |
++-------+--------+----------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> select ename,job
+    -> from emp;
++---------+----------+
+| ename   | job      |
++---------+----------+
+| swathi  | asp      |
+| jyothi  | teacher  |
+| sushma  | lecturer |
+| madhuri | doctor   |
++---------+----------+
+4 rows in set (0.00 sec)
+
+mysql> delete from emp
+    -> where job='lecturer';
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from emp;
++-------+---------+---------+--------+-------+
+| empno | ename   | job     | deptno | sal   |
++-------+---------+---------+--------+-------+
+|     1 | swathi  | asp     |     29 | 16000 |
+|     2 | jyothi  | teacher |     30 |  2000 |
+|     4 | madhuri | doctor  |     32 |  4000 |
++-------+---------+---------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> selet * from emp
+    -> where deptno=30;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selet * from emp
+where deptno=30' at line 1
+mysql> select * from emp
+    -> where deptno=30;
++-------+--------+---------+--------+------+
+| empno | ename  | job     | deptno | sal  |
++-------+--------+---------+--------+------+
+|     2 | jyothi | teacher |     30 | 2000 |
++-------+--------+---------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> select distinct deptno
+    -> from emp;
++--------+
+| deptno |
++--------+
+|     29 |
+|     30 |
+|     32 |
++--------+
+3 rows in set (0.00 sec)
