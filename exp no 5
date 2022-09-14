@@ -1,0 +1,106 @@
+create database bus;
+Query OK, 1 row affected (0.12 sec)
+
+mysql> use bus;
+Database changed
+mysql> create table bus(
+    -> ticketno int(8) primary key,
+    -> journeydate date,
+    -> age int(7),
+    -> sex varchar(10),
+    -> source varchar(10),
+    -> destination varchar(15),
+    -> depttime varchar(15),
+    -> busno int(10));
+Query OK, 0 rows affected, 3 warnings (0.18 sec)
+
+mysql> describe bus;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| ticketno    | int         | NO   | PRI | NULL    |       |
+| journeydate | date        | YES  |     | NULL    |       |
+| age         | int         | YES  |     | NULL    |       |
+| sex         | varchar(10) | YES  |     | NULL    |       |
+| source      | varchar(10) | YES  |     | NULL    |       |
+| destination | varchar(15) | YES  |     | NULL    |       |
+| depttime    | varchar(15) | YES  |     | NULL    |       |
+| busno       | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into bus
+    -> values(123,'2022-03-23',21,'female','hyd','badvel',8,6540),(234,'2022-03-24',23,'female','badvel','hyd',11,5630),(345,'2022-03-25',24,'male','hyd','suraj',12,7510),(456,'2022-03-26',18,'female','kdapa','hyd',10,6347),(567,'2022-03-27',11,'male','hyd','kadapa',9,5210),(678,'2022-03-28',45,'male','delhi','hyd',7,2340);
+Query OK, 6 rows affected (0.14 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from bus;
++----------+-------------+------+--------+--------+-------------+----------+-------+
+| ticketno | journeydate | age  | sex    | source | destination | depttime | busno |
++----------+-------------+------+--------+--------+-------------+----------+-------+
+|      123 | 2022-03-23  |   21 | female | hyd    | badvel      | 8        |  6540 |
+|      234 | 2022-03-24  |   23 | female | badvel | hyd         | 11       |  5630 |
+|      345 | 2022-03-25  |   24 | male   | hyd    | suraj       | 12       |  7510 |
+|      456 | 2022-03-26  |   18 | female | kdapa  | hyd         | 10       |  6347 |
+|      567 | 2022-03-27  |   11 | male   | hyd    | kadapa      | 9        |  5210 |
+|      678 | 2022-03-28  |   45 | male   | delhi  | hyd         | 7        |  2340 |
++----------+-------------+------+--------+--------+-------------+----------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select distinct ticketno
+    -> from bus;
++----------+
+| ticketno |
++----------+
+|      123 |
+|      234 |
+|      345 |
+|      456 |
+|      567 |
+|      678 |
++----------+
+6 rows in set (0.07 sec)
+
+mysql> select ticketno,journeydate,age,sex,source,destination,depttime,busno from bus
+    -> where sex='male';
++----------+-------------+------+------+--------+-------------+----------+-------+
+| ticketno | journeydate | age  | sex  | source | destination | depttime | busno |
++----------+-------------+------+------+--------+-------------+----------+-------+
+|      345 | 2022-03-25  |   24 | male | hyd    | suraj       | 12       |  7510 |
+|      567 | 2022-03-27  |   11 | male | hyd    | kadapa      | 9        |  5210 |
+|      678 | 2022-03-28  |   45 | male | delhi  | hyd         | 7        |  2340 |
++----------+-------------+------+------+--------+-------------+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select source,destination from bus
+    -> where depttime>10;
++--------+-------------+
+| source | destination |
++--------+-------------+
+| badvel | hyd         |
+| hyd    | suraj       |
++--------+-------------+
+2 rows in set (0.05 sec)
+
+mysql> select ticketno from bus
+    -> where destination='suraj';
++----------+
+| ticketno |
++----------+
+|      345 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select ticketno,journeydate,age,sex,source,destination,depttime,busno from bus
+    -> where age>20 and age<40;
++----------+-------------+------+--------+--------+-------------+----------+-------+
+| ticketno | journeydate | age  | sex    | source | destination | depttime | busno |
++----------+-------------+------+--------+--------+-------------+----------+-------+
+|      123 | 2022-03-23  |   21 | female | hyd    | badvel      | 8        |  6540 |
+|      234 | 2022-03-24  |   23 | female | badvel | hyd         | 11       |  5630 |
+|      345 | 2022-03-25  |   24 | male   | hyd    | suraj       | 12       |  7510 |
++----------+-------------+------+--------+--------+-------------+----------+-------+
+3 rows in set (0.00 sec)
+select ticketno,journeydate,age,sex,source,destination,depttime,busno from bus
+    -> where source='london or source='paris';
+    '> ;
