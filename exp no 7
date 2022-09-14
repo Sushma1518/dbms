@@ -1,0 +1,173 @@
+[2:55 PM, 9/14/2022] Sweety: mysql> create database emp;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> use emp;
+Database changed
+mysql> create table emp(
+    -> empno int,
+    -> ename varchar(20),
+    -> deptno int,
+    -> salary int);
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> insert into emp
+    -> values(11,'sushma',211,10000),(12,'jyothi',212,9000),(13,'manasa',213,8000),(14,'swathi',214,8500),(15,'madhuri',215,9900);
+Query OK, 5 rows affected (0.09 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++-------+---------+--------+--------+
+| empno | ename   | deptno | salary |
++-------+---------+--------+--------+
+|    11 | sushma  |    211 |  10000 |
+|    12 | jyothi  |    212 |   9000 |
+|    13 | manasa  |    213 |   8000 |
+|    14 | swathi  |    214 |   8500 |
+|    15 | madhuri |    215 |   9900 |
++-------+---------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select avg(salary),count(*)
+    -> from emp;
++-------------+----------+
+| avg(salary) | count(*) |
++-------------+----------+
+|   9080.0000 |        5 |
++-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary)
+    -> from emp;
++-------------+
+| min(salary) |
++-------------+
+|        8000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary)
+    -> from emp;
++-------------+
+| sum(salary) |
++-------------+
+|       45400 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary)
+    -> from emp;
++-------------+
+| max(salary) |
++-------------+
+|       10000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*)
+    -> from emp;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select deptno
+    -> from emp;
++--------+
+| deptno |
++--------+
+|    211 |
+|    212 |
+|    213 |
+|    214 |
+|    215 |
++--------+
+5 rows in set (0.00 sec)
+
+mysql> select deptno,count(*)
+    -> from emp
+    -> group by deptno;
++--------+----------+
+| deptno | count(*) |
+[2:55 PM, 9/14/2022] Sweety: +--------+----------+
+|    211 |        1 |
+|    212 |        1 |
+|    213 |        1 |
+|    214 |        1 |
+|    215 |        1 |
++--------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select deptno,count(*)
+    -> from emp
+    -> group by deptno;
++--------+----------+
+| deptno | count(*) |
++--------+----------+
+|    211 |        1 |
+|    212 |        1 |
+|    213 |        1 |
+|    214 |        1 |
+|    215 |        1 |
++--------+----------+
+5 rows in set (0.00 sec)
+[10:44 AM, 9/14/2022] Sweety: mysql> create database students;
+Query OK, 1 row affected (0.09 sec)
+
+mysql> use students;
+Database changed
+[10:44 AM, 9/14/2022] Sweety: create table students(
+    -> studentid varchar(10),
+    -> name varchar(10));
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> insert into students(studentid,name)
+    -> values('v001','abe'),('v002','abhay'),('v003','acclin'),('v004','adelphos');
+Query OK, 4 rows affected (0.10 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++-----------+----------+
+| studentid | name     |
++-----------+----------+
+| v001      | abe      |
+| v002      | abhay    |
+| v003      | acclin   |
+| v004      | adelphos |
++-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> create database marks;
+Query OK, 1 row affected (0.14 sec)
+
+mysql> use marks;
+Database changed
+mysql> create table marks(
+    -> studentid varchar(10),
+    -> totalmarks int);
+Query OK, 0 rows affected (0.18 sec)
+mysql> insert into marks(studentid,totalmarks)
+    -> values('v001',95),('v002',80),('v003',74),('v004',81);
+Query OK, 4 rows affected (0.09 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from marks;
++-----------+------------+
+| studentid | totalmarks |
++-----------+------------+
+| v001      |         95 |
+| v002      |         80 |
+| v003      |         74 |
+| v004      |         81 |
++-----------+------------+
+4 rows in set (0.00 sec)
+mysql> select studentid from marks
+    -> where totalmarks>80;
++-----------+
+| studentid |
++-----------+
+| v001      |
+| v004      |
++-----------+
+2 rows in set (0.00 sec)
